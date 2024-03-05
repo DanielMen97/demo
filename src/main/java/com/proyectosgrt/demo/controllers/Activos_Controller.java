@@ -8,30 +8,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectosgrt.demo.models.Personas;
-import com.proyectosgrt.demo.repository.Repository;
+import com.proyectosgrt.demo.models.Activos;
+import com.proyectosgrt.demo.repository.Repository_Activos;
 
 @RestController
-public class Personas_controller {
 
-  @Autowired
-  private Repository rep;
+public class Activos_Controller {
 
-  @GetMapping("")
+    @Autowired
+    private Repository_Activos rep;
+
+    @GetMapping("/act")
     public String incio() {
         return "Conect";
     }
 
-  @GetMapping("/users")
-    public List<Personas> getUsuario() {
+    @GetMapping("/acts")
+    public List<Activos> getActivos() {
         return rep.findAll();
     }
 
     @SuppressWarnings("null")
-    @PostMapping("/create_user")
-    public String create_user(@RequestBody Personas us) {
-            rep.save(us);
-            return "User Create";
+    @PostMapping("/add_act")
+    public String add_act(@RequestBody Activos ac) {
+            rep.save(ac);
+            return "Active Add";
     }
-
 }
+
+
+
+
+
+
