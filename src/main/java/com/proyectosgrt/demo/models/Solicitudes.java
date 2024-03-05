@@ -1,9 +1,7 @@
 package com.proyectosgrt.demo.models;
 
-import java.math.BigInteger;
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
-import org.hibernate.type.descriptor.jdbc.TinyIntJdbcType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,51 +18,51 @@ public class Solicitudes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private BigInteger Idsol;
+    private Long idsol;
 
     @Column
     @Getter
     @Setter
-    private Timestamp FechaCre;
+    private LocalDateTime fechacre;
 
     @Column
     @Getter
     @Setter
-    private Timestamp FechaCi;
+    private LocalDateTime fechaci;
 
     @Column
     @Getter
     @Setter
-    private TinyIntJdbcType Prio;
+    private byte prio;
 
     @Column
     @Getter
     @Setter
-    private String Obser;
+    private String obser;
 
     @Column
     @Getter
     @Setter
-    private String Diag;
+    private String diag;
 
     @Column
     @Getter
     @Setter
-    private TinyIntJdbcType IdEst;
+    private byte idest;
 
     @Column
     @Getter
     @Setter
-    private String NoDocCliente;
+    private String nodoccliente;
 
     @Column
     @Getter
     @Setter
-    private String NoDocTecnico;
+    private String nodoctecnico;
 
     @Column
     @Getter
     @Setter
-    private TinyIntJdbcType IdCat;
+    private byte idcat;
 
 }
