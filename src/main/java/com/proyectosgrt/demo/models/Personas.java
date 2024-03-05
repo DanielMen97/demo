@@ -2,8 +2,6 @@ package com.proyectosgrt.demo.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,70 +9,65 @@ import lombok.Setter;
 @Entity
 public class Personas {
 
+    @Column(name = "nodoc", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private Integer Id;
+    private String nodoc;
 
     @Column
     @Getter
     @Setter
-    private String NoDoc;
+    private String pnom;
 
     @Column
     @Getter
     @Setter
-    private String PNom;
+    private String snom;
 
     @Column
     @Getter
     @Setter
-    private String SNom;
+    private String pape;
 
     @Column
     @Getter
     @Setter
-    private String PApe;
+    private String sape;
 
     @Column
     @Getter
     @Setter
-    private String SApe;
+    private String correo;
 
     @Column
     @Getter
     @Setter
-    private String Correo;
+    private Long celular;
 
     @Column
     @Getter
     @Setter
-    private Integer Celular;
+    private String pass;
 
     @Column
     @Getter
     @Setter
-    private String Pass;
+    private String rol;
 
     @Column
     @Getter
     @Setter
-    private String Rol;
+    private byte idcargo;
 
     @Column
     @Getter
     @Setter
-    private Integer IdCargo;
+    private byte idsede;
 
     @Column
     @Getter
     @Setter
-    private Integer IdSede;
-
-    @Column
-    @Getter
-    @Setter
-    private Integer IdDoc;
+    private byte iddoc;
 
 }
