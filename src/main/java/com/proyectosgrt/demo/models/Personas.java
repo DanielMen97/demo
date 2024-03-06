@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 public class Personas {
 
-    @Column(name = "nodoc", nullable = false)
+    @Column(name = "nodoc", nullable = false, unique = true)
     @Id
     @Getter
     @Setter
