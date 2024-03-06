@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.proyectosgrt.demo.models.Personas;
 
-public interface Repository extends JpaRepository<Personas, String>{
+public interface Repository_Personas extends JpaRepository<Personas, String>{
 
   @Query (value= "{call ConsultUser ()}", nativeQuery = true)
   List <Personas> ConsultUser();
