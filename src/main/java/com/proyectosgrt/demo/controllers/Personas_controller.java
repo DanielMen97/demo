@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.models.Personas;
-import com.proyectosgrt.demo.repository.Repository;
+import com.proyectosgrt.demo.repository.Repository_Personas;
 
 @RestController
 public class Personas_controller {
 
   @Autowired
-  private Repository rep;
+  private Repository_Personas rep;
 
   @GetMapping("")
     public String incio() {
