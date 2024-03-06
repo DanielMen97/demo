@@ -22,7 +22,7 @@ public class Solicitudes_controller {
         return "Conect";
 }
  @GetMapping("/solicitudes")
-    public List<Solicitudes> geSolicitudes() {
+    public List<Solicitudes> getSolicitudes() {
         return repo.findAll();
     }
 
