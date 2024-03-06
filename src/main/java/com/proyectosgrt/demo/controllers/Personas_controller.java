@@ -31,6 +31,7 @@ public class Personas_controller {
         return rep.findAll();
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/create_user")
     public String create_user(@RequestBody Personas us) {
             rep.save(us);
