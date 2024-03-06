@@ -15,7 +15,7 @@ public class Tiposdoc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private long iddoc;
+    private Byte iddoc;
 
     @Column
     @Getter
