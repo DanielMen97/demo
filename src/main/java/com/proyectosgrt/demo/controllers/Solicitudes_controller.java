@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 public class Solicitudes_controller {
@@ -31,5 +34,14 @@ public class Solicitudes_controller {
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
             return "Solicitud Create";
+            
+}
+@PutMapping("Cerrar/{id}")
+public String actulizar(@PathVariable Long iidsol, @RequestBody Solicitudes so) {
+ 
+    Long id;
+    Solicitudes actualizar_estado = repo.findById(id).get();
+    actualizar_estado.setIdest(so.getIdcat());
+    return "Estado de soliictud actualizado";
 }
 }
