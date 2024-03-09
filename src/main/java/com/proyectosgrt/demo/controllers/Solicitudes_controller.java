@@ -36,7 +36,7 @@ public class Solicitudes_controller {
             return "Solicitud Create";
             
 }
-@PutMapping("Cerrar/{id}")
+@PutMapping("Cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
  
     @SuppressWarnings("null")
