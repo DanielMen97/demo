@@ -37,10 +37,10 @@ public class Solicitudes_controller {
             
 }
 @PutMapping("Cerrar/{id}")
-public String actulizar(@PathVariable Long iidsol, @RequestBody Solicitudes so) {
+public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
  
-    Long id;
-    Solicitudes actualizar_estado = repo.findById(id).get();
+    @SuppressWarnings("null")
+    Solicitudes actualizar_estado = repo.findById(idsol).get();
     actualizar_estado.setIdest(so.getIdcat());
     return "Estado de soliictud actualizado";
 }
