@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.repository.Repository_Personas;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 public class Personas_controller {
@@ -56,9 +59,31 @@ public class Personas_controller {
               return new ResponseEntity<>(datos,HttpStatus.CREATED);
 
             }
+
+    @PutMapping("edituser/{id}")
+    public String editUser(@PathVariable String nodoc, @RequestBody Personas us) {
+        @SuppressWarnings("null")
+        Personas actualizarUsuario = rep.findById(nodoc).get();
+        actualizarUsuario.setPnom(us.getPnom());
+        actualizarUsuario.setSnom(us.getSnom());
+        actualizarUsuario.setPape(us.getPape());
+        actualizarUsuario.setSape(us.getSape());
+        actualizarUsuario.setCorreo(us.getCorreo());
+        actualizarUsuario.setCelular(us.getCelular());
+        actualizarUsuario.setPass(us.getPass());
+        actualizarUsuario.setRol(us.getRol());
+        actualizarUsuario.setIdcargo(us.getIdcargo());
+        actualizarUsuario.setIdsede(us.getIdsede());
+        actualizarUsuario.setIddoc(us.getIddoc());
+        rep.save(actualizarUsuario);
+
+        return "Información de usuario Actualizado";
+    }
+    }
+    
         
            
-} 
+
 
 
 
