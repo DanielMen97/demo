@@ -56,8 +56,6 @@ public class Personas_controller {
               return new ResponseEntity<>(datos,HttpStatus.CREATED);
 
             }
-        
-           
 } 
 
 

@@ -29,7 +29,7 @@ public class Activos {
     @Getter
     @Setter
     private short idmarca;
-
+    
 }
 
 

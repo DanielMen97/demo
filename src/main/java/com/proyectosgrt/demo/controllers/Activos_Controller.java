@@ -3,6 +3,7 @@ package com.proyectosgrt.demo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class Activos_Controller {
         return "Conect";
     }
 
-    //Consulta Tabla
+    //Consulta Activo
     @GetMapping("/acts")
     public List<Activos> getActivos() {
         return rep.findAll();
@@ -52,6 +53,18 @@ public class Activos_Controller {
         return "Activo editado";
         
     }
+
+    //Eliminar Activo
+    @SuppressWarnings("null")
+    @DeleteMapping("/delete_act/{idserial}")
+    public String eliminarActivo (@PathVariable("idserial") String idseiral){
+        Activos borrauActivos = rep.findById(idseiral).get();
+        rep.delete(borrauActivos);
+        return "Activo eliminado";
+    }
+
+    
+
 
 }
 
