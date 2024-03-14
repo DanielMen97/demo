@@ -13,4 +13,5 @@ public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long>
 
     @Query("SELECT s FROM Solicitudes s WHERE s.fechacre BETWEEN ?1 AND ?2")
     List<Solicitudes> getfech (LocalDateTime f1, LocalDateTime f2);
+
 }

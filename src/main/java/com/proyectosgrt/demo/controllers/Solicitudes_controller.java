@@ -4,12 +4,14 @@ package com.proyectosgrt.demo.controllers;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.models.Solicitudes;
@@ -34,6 +36,12 @@ public class Solicitudes_controller {
     public List<Solicitudes> getSolicitudes() {
         return repo.findAll();
     }
+@SuppressWarnings("null")
+@GetMapping("/solicitudid/{idsol}")
+public Solicitudes solicitudid(@PathVariable Long idsol) {
+    return repo.findById(idsol).orElse(null);
+}
+
 
 @SuppressWarnings("null")
 @PostMapping("/create_solicitud")
@@ -42,6 +50,8 @@ public class Solicitudes_controller {
             return "Solicitud Create";
             
 }
+
+
 @PutMapping("cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
  
@@ -69,11 +79,13 @@ public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes 
 }
 
 @GetMapping("/solicitud_fecha")
-    public List <Solicitudes> Solicitudes() {
+    public List <Solicitudes> Solicitudes(@RequestBody Map<String, String> body) {
+        String fecha1 = body.get("fecha1");
+        String fecha2 = body.get("fecha2");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
-    LocalDateTime f1 = LocalDateTime.parse("2024-03-10T03:08:17.000+00:00", formatter);
-    LocalDateTime f2 = LocalDateTime.parse("2024-03-15T03:08:17.000+00:00", formatter);
+    LocalDateTime f1 = LocalDateTime.parse(fecha1, formatter);
+    LocalDateTime f2 = LocalDateTime.parse(fecha2, formatter);
         return repo.getfech(f1, f2);
 }
 
