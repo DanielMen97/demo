@@ -33,6 +33,9 @@ public class Asignaciones_controller {
     public ResponseEntity<Object> asignarActivo(@RequestBody Asignaciones as) {
         HashMap<String, Object> datos = new HashMap<>();
 
+        asg.save(as);
+        datos.put("data", as);
+        datos.put("message", "El activo se asigno correctamente");
         return new ResponseEntity<>(datos,HttpStatus.CREATED);
     }
     
