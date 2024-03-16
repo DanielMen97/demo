@@ -50,11 +50,6 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private byte idest;
-
-    @Column
-    @Getter
-    @Setter
     private String nodoccliente;
 
     @Column
@@ -67,8 +62,9 @@ public class Solicitudes {
     @Setter
     private byte idcat;
 
-   /* @ManyToOne
-    @JoinColumn(name  = "idest")
-    private Estados estado;*/
+    @ManyToOne(targetEntity = Estados.class)
+    @Getter
+    @Setter
+    private Estados idest;
 
 }
