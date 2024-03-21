@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,12 +29,11 @@ public class Personas_controller {
     public String incio() {
         return "Conect";
     }
-
+  @CrossOrigin(origins = "http://localhost:3000/")  
   @GetMapping("/users")
     public List<Personas> getUsuario() {
         return rep.findAll();
     }
-
     @SuppressWarnings("null")
     @PostMapping("/create_user")
     public String create_user(@RequestBody Personas us) {
@@ -42,7 +42,7 @@ public class Personas_controller {
     }
 
     //Crea un usuario validando documento
-
+    @CrossOrigin(origins = "http://localhost:3000/")  
     @PostMapping("/create")
     public ResponseEntity<Object> create(@RequestBody Personas us) {
             Optional<Personas> res = rep.findPersonasBynodoc(us.getNodoc());
