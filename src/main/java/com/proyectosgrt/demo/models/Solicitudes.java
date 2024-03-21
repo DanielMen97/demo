@@ -61,10 +61,10 @@ public class Solicitudes {
     @Getter
     @Setter
     private byte idcat;
-
-    @ManyToOne(targetEntity = Estados.class)
+    
+    @Column
     @Getter
     @Setter
-    private Estados idest;
+    private byte idest;
 
 }
