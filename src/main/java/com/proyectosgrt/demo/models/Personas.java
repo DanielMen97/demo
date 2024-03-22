@@ -53,7 +53,7 @@ public class Personas {
     @Column
     @Getter
     @Setter
-    private String rol;
+    private byte idrol;
 
     @Column
     @Getter
@@ -69,5 +69,10 @@ public class Personas {
     @Getter
     @Setter
     private byte iddoc;
+
+    @Column
+    @Getter
+    @Setter
+    private boolean estado;
 
 }

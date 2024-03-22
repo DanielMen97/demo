@@ -71,10 +71,11 @@ public class Personas_controller {
         actualizarUsuario.setCorreo(us.getCorreo());
         actualizarUsuario.setCelular(us.getCelular());
         actualizarUsuario.setPass(us.getPass());
-        actualizarUsuario.setRol(us.getRol());
+        actualizarUsuario.setIdrol(us.getIdrol());
         actualizarUsuario.setIdcargo(us.getIdcargo());
         actualizarUsuario.setIdsede(us.getIdsede());
         actualizarUsuario.setIddoc(us.getIddoc());
+        actualizarUsuario.setEstado(us.isEstado());
         rep.save(actualizarUsuario);
 
         return "Información de usuario Actualizado";
