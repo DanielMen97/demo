@@ -9,16 +9,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-
 public class Categorias {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    public Byte idcat;
-
+    private Byte idcat;
+    
     @Column
     @Getter
     @Setter
-    public String nombre;
+    private String nombre;
+    
 }
