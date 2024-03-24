@@ -46,18 +46,22 @@ public class Personas_controller {
     @PostMapping("/create")
     public ResponseEntity<Object> create(@RequestBody Personas us) {
             Optional<Personas> res = rep.findPersonasBynodoc(us.getNodoc());
+            Optional<Personas> resc = rep.findByCorreo(us.getCorreo());
             HashMap<String, Object> datos = new HashMap<>();
 
               if(res.isPresent()) {
-                datos.put("error", true);
+                datos.put("error", true); 
                 datos.put("mensaje", "El usuario ya esta creado");
+                return new ResponseEntity<>(datos,HttpStatus.CONFLICT);
+              } else if (resc.isPresent()) {
+                datos.put("error", true); 
+                datos.put("mensaje", "El correo ya se encuentra registrado");
                 return new ResponseEntity<>(datos,HttpStatus.CONFLICT);
               }
               rep.save(us); 
               datos.put("data", us);
               datos.put("mensaje", "El usuario fue creado correctamente");
               return new ResponseEntity<>(datos,HttpStatus.CREATED);
-
             }
 
     @PutMapping("edituser/{id}")
