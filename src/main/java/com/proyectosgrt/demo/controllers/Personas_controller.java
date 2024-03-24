@@ -64,7 +64,7 @@ public class Personas_controller {
               return new ResponseEntity<>(datos,HttpStatus.CREATED);
             }
 
-    @PutMapping("edituser/{id}")
+    @PutMapping("edituser/{nodoc}")
     public String editUser(@PathVariable String nodoc, @RequestBody Personas us) {
         @SuppressWarnings("null")
         Personas actualizarUsuario = rep.findById(nodoc).get();
