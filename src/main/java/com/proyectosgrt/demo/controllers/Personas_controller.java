@@ -84,7 +84,6 @@ public class Personas_controller {
 
         return "Información de usuario Actualizado";
     }
-    }
     
         
            
