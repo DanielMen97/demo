@@ -14,5 +14,7 @@ public interface Repository_Personas extends JpaRepository<Personas, String>{
   List <Personas> ConsultUser();
 
   Optional<Personas> findPersonasBynodoc(String nodoc);
+  Optional<Personas> findByCorreo(String correo);
+  Optional<Personas> findByIddoc(byte iddoc);
 
 }
