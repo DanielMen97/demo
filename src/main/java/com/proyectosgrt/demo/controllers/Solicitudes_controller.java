@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.models.Solicitudes;
@@ -43,12 +42,12 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
 }
 
-
 @SuppressWarnings("null")
+@CrossOrigin(origins = "http://localhost:3000/")
 @PostMapping("/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
-            return "Solicitud Create";
+            return "Solicitud Creada    ";
             
 }
 
