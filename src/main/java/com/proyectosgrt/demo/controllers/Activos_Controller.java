@@ -65,9 +65,6 @@ public class Activos_Controller {
         return "Activo eliminado";
     }
 
-    
-
-
 }
 
 
