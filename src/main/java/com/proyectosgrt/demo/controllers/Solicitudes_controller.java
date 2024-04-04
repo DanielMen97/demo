@@ -17,19 +17,19 @@ public class Solicitudes_controller {
     @Autowired
     private Solicitudes_Repository repo;
 
-     @GetMapping("/s")
+    @GetMapping("/s")
     public String incio() {
         return "Conect";
 }
- @GetMapping("/solicitudes")
+    @GetMapping("/solicitudes")
     public List<Solicitudes> getSolicitudes() {
         return repo.findAll();
     }
 
 @SuppressWarnings("null")
-@PostMapping("/create_solicitud")
+    @PostMapping("/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
             return "Solicitud Create";
-}
+    }
 }
