@@ -14,13 +14,14 @@ public class PersonasDTO {
   private String snom;
   private String pape;
   private String sape;
+  private String celular;
   private String correo;
   private String rol;
   private String pass;
   private Integer idsede;
   private Integer iddoc;
+  private Integer idcargo;
   private boolean estado;
-  private boolean prueba;
   private String token;
   private String refreshToken;
   private String expirationTime; 

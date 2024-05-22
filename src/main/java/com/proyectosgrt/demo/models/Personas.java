@@ -21,10 +21,12 @@ public class Personas implements UserDetails {
     private String pape;
     private String sape;
     private String correo;
+    private String celular;
     private String pass;
     private String rol;
     private Integer idsede;
     private Integer iddoc;
+    private Integer idcargo;
     private boolean estado;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -44,7 +46,7 @@ public class Personas implements UserDetails {
     }
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return estado;
     }
     @Override
     public boolean isCredentialsNonExpired() {

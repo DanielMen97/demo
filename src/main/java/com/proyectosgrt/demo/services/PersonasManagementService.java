@@ -1,16 +1,17 @@
 package com.proyectosgrt.demo.services;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.proyectosgrt.demo.DTO.PersonasDTO;
+import com.proyectosgrt.demo.DTO.RolesDTO;
+import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.repository.Repository_Personas;
 
@@ -36,11 +37,13 @@ public class PersonasManagementService {
     personas.setSnom(dto.getSnom());
     personas.setPape(dto.getPape());
     personas.setSape(dto.getSape());
+    personas.setCelular(dto.getCelular());
     personas.setCorreo(dto.getCorreo());
     personas.setRol(dto.getRol());
     personas.setPass(passwordEncoder.encode(dto.getPass()));
     personas.setIdsede(dto.getIdsede());
     personas.setIddoc(dto.getIddoc());
+    personas.setIdcargo(dto.getIdcargo());
     personas.setEstado(dto.isEstado());
 
     return repository_Personas.save(personas);
@@ -59,6 +62,16 @@ public PersonasDTO login(PersonasDTO log){
     personas.setExpirationTime("24Hrs");
 
     return personas;
+}
+
+public List<RolesDTO> getListRoles(){
+  List<RolesDTO> listaRoles = repository_Personas.getListRoles();
+  return listaRoles;
+}
+
+public List<TablaPersonasDTO> getListTablaPersonas(){
+  List<TablaPersonasDTO> listaTablaPersonas = repository_Personas.getListTablePersonas();
+  return listaTablaPersonas;
 }
 
   public String prueba(){
