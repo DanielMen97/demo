@@ -1,78 +1,58 @@
 package com.proyectosgrt.demo.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-public class Personas {
+@Data
+public class Personas implements UserDetails {
 
-    @Column(name = "nodoc", nullable = false, unique = true)
     @Id
-    @Getter
-    @Setter
     private String nodoc;
-
-    @Column
-    @Getter
-    @Setter
     private String pnom;
-
-    @Column
-    @Getter
-    @Setter
     private String snom;
-
-    @Column
-    @Getter
-    @Setter
     private String pape;
-
-    @Column
-    @Getter
-    @Setter
     private String sape;
-
-    @Column
-    @Getter
-    @Setter
     private String correo;
-
-    @Column
-    @Getter
-    @Setter
-    private Long celular;
-
-    @Column
-    @Getter
-    @Setter
     private String pass;
-
-    @Column
-    @Getter
-    @Setter
-    private byte idrol;
-
-    @Column
-    @Getter
-    @Setter
-    private byte idcargo;
-
-    @Column
-    @Getter
-    @Setter
-    private byte idsede;
-
-    @Column
-    @Getter
-    @Setter
-    private byte iddoc;
-
-    @Column
-    @Getter
-    @Setter
+    private String rol;
+    private Integer idsede;
+    private Integer iddoc;
     private boolean estado;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(rol));
+    }
+    @Override
+    public String getPassword() {
+        return pass;
+    }
+    @Override
+    public String getUsername() {
+        return correo;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        return estado;
+    }
 
 }
