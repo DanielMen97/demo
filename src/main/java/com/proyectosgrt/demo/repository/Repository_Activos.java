@@ -7,4 +7,3 @@ import com.proyectosgrt.demo.models.Activos;
 public interface Repository_Activos extends JpaRepository<Activos, String> {
 
 }
-
