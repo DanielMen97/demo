@@ -35,7 +35,7 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private byte prio;
+    private String prio;
 
     @Column
     @Getter
@@ -60,11 +60,11 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private byte idcat;
+    private String idcat;
     
     @Column
     @Getter
     @Setter
-    private byte idest;
+    private String idest;
 
 }
