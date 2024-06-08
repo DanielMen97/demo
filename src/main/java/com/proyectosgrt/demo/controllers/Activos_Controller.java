@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.TablaActivosDTO;
 import com.proyectosgrt.demo.models.Activos;
 import com.proyectosgrt.demo.repository.Repository_Activos;
+
 
 @RestController
 public class Activos_Controller {
@@ -64,6 +66,13 @@ public class Activos_Controller {
         rep.delete(borrauActivos);
         return "Activo eliminado";
     }
+
+    @GetMapping("/public/listtableacts")
+    public List<TablaActivosDTO> getTableActs() {
+        List<TablaActivosDTO> listactivos = rep.getLstTableActivos();
+        return listactivos;
+    }
+    
 
 }
 
