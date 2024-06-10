@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectosgrt.demo.models.Asignaciones;
 import com.proyectosgrt.demo.models.SolicitudesActivo;
 import com.proyectosgrt.demo.repository.SolicitudesActivos_Repository;
 import org.springframework.web.bind.annotation.GetMapping;

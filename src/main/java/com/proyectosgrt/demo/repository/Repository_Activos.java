@@ -1,9 +1,15 @@
 package com.proyectosgrt.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.proyectosgrt.demo.DTO.TablaActivosDTO;
 import com.proyectosgrt.demo.models.Activos;
 
 public interface Repository_Activos extends JpaRepository<Activos, String> {
+    @Query("Select new com.proyectosgrt.demo.models.Activos (activos.idserial, activos.modelo, marcasactivo.nombre, tiposactivo.nombre) FROM Activos activos INNER JOIN Tiposactivo tiposactivo ON activos.idtipo = tiposactivo.idtipo INNER JOIN Marcasactivo marcasactivo ON activos.idmarca = marcasactivo.idmarca")
+    List<TablaActivosDTO> getLstTableActivos();
 
 }
