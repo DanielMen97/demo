@@ -3,16 +3,14 @@ package com.proyectosgrt.demo.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
+@Table(name = "roles")
 public class Roles {
 
   @Id
-  @Getter
-  @Setter
-  private Integer idrol;
-
-  @Column
-  @Getter
-  @Setter
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
   private String nombre;
+  
 }
