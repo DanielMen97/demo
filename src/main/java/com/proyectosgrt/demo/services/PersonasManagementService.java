@@ -60,6 +60,7 @@ public PersonasDTO login(PersonasDTO log){
     personas.setToken(jwt);
     personas.setRefreshToken(refreshToken);
     personas.setExpirationTime("24Hrs");
+    personas.setRol(user.getRol());
 
     return personas;
 }
