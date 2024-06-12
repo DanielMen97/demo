@@ -21,6 +21,7 @@ public class PersonasDTO {
   private Integer idsede;
   private Integer iddoc;
   private Integer idcargo;
+  private String role;
   private boolean estado;
   private String token;
   private String refreshToken;

@@ -43,6 +43,7 @@ public class PersonasManagementService {
     personas.setPass(passwordEncoder.encode(dto.getPass()));
     personas.setIdsede(dto.getIdsede());
     personas.setIddoc(dto.getIddoc());
+    personas.setRole(dto.getRole());
     personas.setIdcargo(dto.getIdcargo());
     personas.setEstado(dto.isEstado());
 

@@ -28,15 +28,12 @@ public class Personas implements UserDetails {
     private Integer iddoc;
     private Integer idcargo;
     private boolean estado;
-    @ManyToOne
-    @JoinColumn(name = "role")
-    private Roles role;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-
-        return List.of(new SimpleGrantedAuthority(role.getRol().name()));
+        return List.of(new SimpleGrantedAuthority(role));
     }
     @Override
     public String getPassword() {
