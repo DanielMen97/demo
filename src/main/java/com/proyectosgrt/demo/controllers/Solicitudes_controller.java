@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,11 +30,12 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
-@CrossOrigin(origins = "http://localhost:3000/")
- @GetMapping("/solicitudes")
-    public List<Solicitudes> getSolicitudes() {
-        return repo.solicitudes_cons();
+ @GetMapping("/auth/solicitudes")
+    public List<SolicitudesDTO> getSolicitudes() {
+        List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
+        return listaSolicitudes;
     }
+    
 @SuppressWarnings("null")
 @GetMapping("/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
@@ -42,7 +44,7 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 }
 
 @GetMapping("/Solicitudes/{nodoccliente}")
-public List<Solicitudes> solicitudesPersonas(@PathVariable String nodoccliente) {
+public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
     return repo.findByNodoccliente(nodoccliente);
 }
 
