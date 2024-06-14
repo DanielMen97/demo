@@ -23,14 +23,16 @@ public class Personas implements UserDetails {
     private String correo;
     private String celular;
     private String pass;
-    private String rol;
     private Integer idsede;
     private Integer iddoc;
     private Integer idcargo;
     private boolean estado;
+    private String role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(rol));
+
+        return List.of(new SimpleGrantedAuthority(role));
     }
     @Override
     public String getPassword() {

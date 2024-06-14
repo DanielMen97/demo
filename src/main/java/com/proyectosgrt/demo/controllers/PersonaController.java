@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.DTO.PersonasDTO;
-import com.proyectosgrt.demo.DTO.RolesDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.services.PersonasManagementService;
@@ -33,26 +32,9 @@ public class PersonaController {
       return ResponseEntity.ok(loginPersonas);
   }
 
-  @GetMapping("/admin/listaroles")
-  public List<RolesDTO> listaRoles(){
-    return personasManagementService.getListRoles();
-  }
-
   @GetMapping("/admin/listatablapersonas")
   public List<TablaPersonasDTO> listaTablaPersonas(){
     return personasManagementService.getListTablaPersonas();
-  }
-  
-
-  @GetMapping("/public/hola")
-  public String hola(){
-    return personasManagementService.prueba();
-  }
-
-  @PostMapping("/admin/hola2")
-  public String postMethodName() {
-      
-      return personasManagementService.prueba2();
   }
   
 }
