@@ -45,7 +45,7 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 
 @GetMapping("/Solicitudes/{nodoccliente}")
 public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
-    return repo.findByNoDocCliente(nodoccliente);
+    return repo.findByNodoccliente(nodoccliente);
 }
 
 
