@@ -3,7 +3,6 @@ package com.proyectosgrt.demo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,15 +29,12 @@ public class Activos_Controller {
     }   
 
     //Consulta Activo
-    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/acts")
     public List<Activos> getActivos() {
         return rep.findAll();
     }
 
     //Creacion Activo
-    @CrossOrigin(origins = "http://localhost:3000/")
-    @SuppressWarnings("null")
     @PostMapping("/add_act")
     public String add_act(@RequestBody Activos ac) {
             rep.save(ac);
@@ -48,18 +44,15 @@ public class Activos_Controller {
     //Editar Usuario
     @PutMapping("/edit_act/{idserial}")
     public String edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
-        @SuppressWarnings("null")
         Activos actualizarActivos = rep.findById(idserial).get();
         actualizarActivos.setModelo(ac.getModelo());
         actualizarActivos.setIdtipo(ac.getIdtipo());
         actualizarActivos.setIdmarca(ac.getIdmarca());
         rep.save(actualizarActivos);
-        return "Activo editado";
-        
+        return "Activo editado";        
     }
 
     //Eliminar Activo
-    @SuppressWarnings("null")
     @DeleteMapping("/delete_act/{idserial}")
     public String eliminarActivo (@PathVariable("idserial") String idseiral){
         Activos borrauActivos = rep.findById(idseiral).get();
@@ -67,13 +60,11 @@ public class Activos_Controller {
         return "Activo eliminado";
     }
 
-    @GetMapping("/public/listtableacts")
+    @GetMapping("/auth/listtableacts")
     public List<TablaActivosDTO> getTableActs() {
         List<TablaActivosDTO> listactivos = rep.getLstTableActivos();
         return listactivos;
     }
-    
-
 }
 
 

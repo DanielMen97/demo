@@ -9,7 +9,7 @@ import com.proyectosgrt.demo.DTO.TablaActivosDTO;
 import com.proyectosgrt.demo.models.Activos;
 
 public interface Repository_Activos extends JpaRepository<Activos, String> {
-    @Query("Select new com.proyectosgrt.demo.models.Activos (activos.idserial, activos.modelo, marcasactivo.nombre, tiposactivo.nombre) FROM Activos activos INNER JOIN Tiposactivo tiposactivo ON activos.idtipo = tiposactivo.idtipo INNER JOIN Marcasactivo marcasactivo ON activos.idmarca = marcasactivo.idmarca")
+    @Query("Select new com.proyectosgrt.demo.DTO.TablaActivosDTO (activos.idserial, activos.modelo, marcasactivo.nombre, tiposactivo.nombre) FROM Activos activos INNER JOIN Tiposactivo tiposactivo ON activos.idtipo = tiposactivo.idtipo INNER JOIN Marcasactivo marcasactivo ON activos.idmarca = marcasactivo.idmarca")
     List<TablaActivosDTO> getLstTableActivos();
 
 }
