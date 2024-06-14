@@ -5,9 +5,11 @@ import lombok.*;
 
 @Data
 @Entity
-public class Roles {
+public class Rol_Modulos {
 
   @Id
-  private String rol;
+  private Integer id;
+  private Integer moduloid;
+  private String rolid;
   
 }
