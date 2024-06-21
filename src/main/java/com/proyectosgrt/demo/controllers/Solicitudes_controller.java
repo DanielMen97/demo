@@ -30,7 +30,7 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
- @GetMapping("/auth/solicitudes")
+ @GetMapping("/adminuser/solicitudes")
     public List<SolicitudesDTO> getSolicitudes() {
         List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
@@ -43,7 +43,7 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 
 }
 
-@GetMapping("/Solicitudes/{nodoccliente}")
+@GetMapping("/auth/Solicitudes/{nodoccliente}")
 public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
     return repo.findByNodoccliente(nodoccliente);
 }
@@ -51,7 +51,7 @@ public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodocclient
 
 @SuppressWarnings("null")
 @CrossOrigin(origins = "http://localhost:3000/")
-@PostMapping("/create_solicitud")
+@PostMapping("/adminuser/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
             return "Solicitud Creada";
@@ -59,7 +59,7 @@ public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodocclient
 }
 
 
-@PutMapping("cerrar/{idsol}")
+@PutMapping("/adminuser/cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
  
     @SuppressWarnings("null")
@@ -70,7 +70,7 @@ public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
 }
 
 
-@PutMapping("/modificar/{idsol}")
+@PutMapping("/adminuser/modificar/{idsol}")
 public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setFechaci(so.getFechaci());
@@ -85,7 +85,7 @@ public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes 
     return "Solicitud actualizada";
 }
 
-@PutMapping("/modificarobser/{idsol}")
+@PutMapping("/adminuser/modificarobser/{idsol}")
 public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setObser(so.getObser());
@@ -94,7 +94,7 @@ public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitude
     return "Observacion actualizada";
 }
 
-@GetMapping("/solicitud_fecha")
+@GetMapping("/adminuser/solicitud_fecha")
     public List <Solicitudes> Solicitudes(@RequestBody Map<String, String> body) {
         String fecha1 = body.get("fecha1");
         String fecha2 = body.get("fecha2");
