@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.proyectosgrt.demo.DTO.PersonasDTO;
-import com.proyectosgrt.demo.DTO.RolesDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.repository.Repository_Personas;
@@ -39,10 +38,10 @@ public class PersonasManagementService {
     personas.setSape(dto.getSape());
     personas.setCelular(dto.getCelular());
     personas.setCorreo(dto.getCorreo());
-    personas.setRol(dto.getRol());
     personas.setPass(passwordEncoder.encode(dto.getPass()));
     personas.setIdsede(dto.getIdsede());
     personas.setIddoc(dto.getIddoc());
+    personas.setRole(dto.getRole());
     personas.setIdcargo(dto.getIdcargo());
     personas.setEstado(dto.isEstado());
 
@@ -60,25 +59,13 @@ public PersonasDTO login(PersonasDTO log){
     personas.setToken(jwt);
     personas.setRefreshToken(refreshToken);
     personas.setExpirationTime("24Hrs");
+    personas.setRole(user.getRole());
 
     return personas;
-}
-
-public List<RolesDTO> getListRoles(){
-  List<RolesDTO> listaRoles = repository_Personas.getListRoles();
-  return listaRoles;
 }
 
 public List<TablaPersonasDTO> getListTablaPersonas(){
   List<TablaPersonasDTO> listaTablaPersonas = repository_Personas.getListTablePersonas();
   return listaTablaPersonas;
 }
-
-  public String prueba(){
-    return "Hola Si funciona";
-  }
-
-  public String prueba2(){
-    return "Post";
-  }
 }

@@ -23,12 +23,12 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private LocalDateTime fechacre;
+    private String fechacre;
 
     @Column
     @Getter
     @Setter
-    private LocalDateTime fechaci;
+    private String fechaci;
 
     @Column
     @Getter
@@ -58,11 +58,11 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private String idcat;
+    private Byte idcat;
     
     @Column
     @Getter
     @Setter
-    private String idest;
+    private Byte idest;
 
 }
