@@ -115,3 +115,5 @@ public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitud
     return "Solicitud actualizada";
 
 }
+
+}
