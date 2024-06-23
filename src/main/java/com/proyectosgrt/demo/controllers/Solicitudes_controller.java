@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
 
 
 @RestController
@@ -32,28 +30,36 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
-@CrossOrigin(origins = "http://localhost:3000/")
- @GetMapping("/solicitudes")
-    public List<Solicitudes> getSolicitudes() {
-        return repo.findAll();
+ @GetMapping("/adminuser/solicitudes")
+    public List<SolicitudesDTO> getSolicitudes() {
+        List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
+        return listaSolicitudes;
     }
+    
 @SuppressWarnings("null")
 @GetMapping("/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
+
+}
+
+@GetMapping("/auth/Solicitudes/{nodoccliente}")
+public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
+    return repo.findByNodoccliente(nodoccliente);
 }
 
 
 @SuppressWarnings("null")
-@PostMapping("/create_solicitud")
+@CrossOrigin(origins = "http://localhost:3000/")
+@PostMapping("/adminuser/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
-            return "Solicitud Create";
+            return "Solicitud Creada";
             
 }
 
 
-@PutMapping("cerrar/{idsol}")
+@PutMapping("/adminuser/cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
  
     @SuppressWarnings("null")
@@ -64,7 +70,7 @@ public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
 }
 
 
-@PutMapping("/modificar/{idsol}")
+@PutMapping("/adminuser/modificar/{idsol}")
 public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setFechaci(so.getFechaci());
@@ -79,7 +85,16 @@ public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes 
     return "Solicitud actualizada";
 }
 
-@GetMapping("/solicitud_fecha")
+@PutMapping("/adminuser/modificarobser/{idsol}")
+public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitudes so){
+    Solicitudes actualizarsol = repo.findById(idsol).get();
+    actualizarsol.setObser(so.getObser());
+
+    repo.save(actualizarsol);
+    return "Observacion actualizada";
+}
+
+@GetMapping("/adminuser/solicitud_fecha")
     public List <Solicitudes> Solicitudes(@RequestBody Map<String, String> body) {
         String fecha1 = body.get("fecha1");
         String fecha2 = body.get("fecha2");

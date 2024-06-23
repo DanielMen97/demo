@@ -8,8 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,17 +23,17 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private LocalDateTime fechacre;
+    private String fechacre;
 
     @Column
     @Getter
     @Setter
-    private LocalDateTime fechaci;
+    private String fechaci;
 
     @Column
     @Getter
     @Setter
-    private byte prio;
+    private String prio;
 
     @Column
     @Getter
@@ -60,11 +58,11 @@ public class Solicitudes {
     @Column
     @Getter
     @Setter
-    private byte idcat;
+    private Byte idcat;
     
     @Column
     @Getter
     @Setter
-    private byte idest;
+    private Byte idest;
 
 }

@@ -30,9 +30,12 @@ public class Activos {
     @Setter
     private short idmarca;
 
+    @Column
+    @Getter
+    @Setter
+    private String idperson;
+    
 }
-
-
 
 
 
