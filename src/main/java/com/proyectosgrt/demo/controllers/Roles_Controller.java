@@ -1,27 +1,25 @@
-// package com.proyectosgrt.demo.controllers;
+package com.proyectosgrt.demo.controllers;
 
-// import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.web.bind.annotation.RestController;
+import com.proyectosgrt.demo.DTO.RolesDTO;
+import com.proyectosgrt.demo.services.RolesServices;
 
-// import com.proyectosgrt.demo.models.Roles;
-// import com.proyectosgrt.demo.repository.Repository_Roles;
+import java.util.List;
 
-// import org.springframework.web.bind.annotation.CrossOrigin;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 
-// @RestController
-// public class Roles_Controller {
 
-//   @Autowired
-//   private Repository_Roles rol;
+@RestController
+public class Roles_Controller {
 
-//   @CrossOrigin(origins = "http://localhost:3000/") 
-//   @GetMapping("/roles")
-//   public List<Roles> listRoles() {
-//       return rol.findAll();
-//   }
+  @Autowired
+  RolesServices rolesServices;
+
+  @GetMapping("/admin/roles")
+  public List<RolesDTO> getListRoles() {
+      return rolesServices.getRoles();
+  }
   
-
-// }
+}

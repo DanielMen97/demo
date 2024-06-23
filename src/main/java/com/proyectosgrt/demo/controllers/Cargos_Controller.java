@@ -5,23 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectosgrt.demo.models.Cargos;
-import com.proyectosgrt.demo.repository.Repository_Cargos;
+import com.proyectosgrt.demo.DTO.CargosDTO;
+import com.proyectosgrt.demo.services.CargosServices;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class Cargos_Controller {
 
   @Autowired
-  private Repository_Cargos carg;
+  CargosServices cargosServices;
 
-  @CrossOrigin(origins = "http://localhost:3000/")
-  @GetMapping("/cargos")
-  public List<Cargos> listCargos() {
-      return carg.findAll();
+  @GetMapping("/admin/cargos")
+  public List<CargosDTO> getMethodName() {
+      return cargosServices.getCargos();
   }
   
 
+  
+  
 }

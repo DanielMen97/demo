@@ -105,4 +105,15 @@ public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitude
         return repo.getfech(f1, f2);
 }
 
+@PutMapping("/admin/modificarTec/{idsol}")
+public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
+    Solicitudes actualizarsol = repo.findById(idsol).get();
+    actualizarsol.setPrio(so.getPrio());
+    actualizarsol.setIdest(so.getIdest());
+    actualizarsol.setNodoctecnico(so.getNodoctecnico());
+    repo.save(actualizarsol);
+    return "Solicitud actualizada";
+
+}
+
 }
