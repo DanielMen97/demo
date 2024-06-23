@@ -20,7 +20,7 @@ public class PersonaController {
   @Autowired
   private PersonasManagementService personasManagementService;
 
-  @PostMapping("/auth/create")
+  @PostMapping("/admin/create")
    public ResponseEntity<Personas> createUser(@RequestBody PersonasDTO dto) {
     Personas createdPersonas = personasManagementService.createUser(dto);
     return ResponseEntity.ok(createdPersonas);
