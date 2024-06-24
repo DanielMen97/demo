@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,27 +29,23 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
- @GetMapping("/adminuser/solicitudes")
+ @GetMapping("/admin/solicitudes")
     public List<SolicitudesDTO> getSolicitudes() {
         List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
     }
-    
-@SuppressWarnings("null")
+
 @GetMapping("/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
 
 }
 
-@GetMapping("/auth/Solicitudes/{nodoccliente}")
+@GetMapping("/admin/Solicitudes/{nodoccliente}")
 public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
     return repo.findByNodoccliente(nodoccliente);
 }
 
-
-@SuppressWarnings("null")
-@CrossOrigin(origins = "http://localhost:3000/")
 @PostMapping("/adminuser/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
@@ -58,11 +53,8 @@ public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodocclient
             
 }
 
-
 @PutMapping("/adminuser/cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
- 
-    @SuppressWarnings("null")
     Solicitudes actualizar_estado = repo.findById(idsol).get();
     actualizar_estado.setIdest(so.getIdest());
     repo.save(actualizar_estado);

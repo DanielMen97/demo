@@ -38,6 +38,7 @@ public class SecurityConfig {
                       .requestMatchers("/user/**").hasAnyAuthority("USER")
                       .requestMatchers("/technical").hasAnyAuthority("TECHNICAL")
                       .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
+                      .requestMatchers("/admintechnical/**").hasAnyAuthority("ADMIN", "TECHNICAL")
                       .anyRequest().authenticated())
                   .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                   .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
