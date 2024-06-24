@@ -1,10 +1,6 @@
 package com.proyectosgrt.demo.controllers;
-
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -94,16 +90,6 @@ public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitude
     return "Observacion actualizada";
 }
 
-@GetMapping("/adminuser/solicitud_fecha")
-    public List <Solicitudes> Solicitudes(@RequestBody Map<String, String> body) {
-        String fecha1 = body.get("fecha1");
-        String fecha2 = body.get("fecha2");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-
-    LocalDateTime f1 = LocalDateTime.parse(fecha1, formatter);
-    LocalDateTime f2 = LocalDateTime.parse(fecha2, formatter);
-        return repo.getfech(f1, f2);
-}
 
 @PutMapping("/admin/modificarTec/{idsol}")
 public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
