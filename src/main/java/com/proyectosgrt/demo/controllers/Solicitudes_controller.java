@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectosgrt.demo.DTO.SolicitudesDTO;
+import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,8 +31,8 @@ public class Solicitudes_controller {
         return "Conect";
 }
  @GetMapping("/adminuser/solicitudes")
-    public List<SolicitudesDTO> getSolicitudes() {
-        List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
+    public List<TablaSolicitudesDTO> getSolicitudes() {
+        List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
     }
     
@@ -44,7 +44,7 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 }
 
 @GetMapping("/auth/Solicitudes/{nodoccliente}")
-public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
+public List<TablaSolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
     return repo.findByNodoccliente(nodoccliente);
 }
 
