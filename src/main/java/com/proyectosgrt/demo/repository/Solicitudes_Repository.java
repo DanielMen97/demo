@@ -11,7 +11,7 @@ import com.proyectosgrt.demo.models.Solicitudes;
 
 public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long> {
 
-  @Query("SELECT new com.proyectosgrt.demo.DTO.TablaSolicitudesDTO(s.idsol, s.fechacre, s.fechaci, s.prio, s.obser, s.diag, s.nodoccliente, s.nodoctecnico, c.nombre, e.nombre)FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest")
+  @Query("SELECT new com.proyectosgrt.demo.DTO.TablaSolicitudesDTO(s.idsol, s.fechacre, s.prio, s.nodoccliente, s.nodoctecnico, c.nombre, e.nombre) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest")
   List<TablaSolicitudesDTO> getListSolicitudes();
 
 

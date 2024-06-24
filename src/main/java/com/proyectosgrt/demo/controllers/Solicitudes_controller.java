@@ -1,9 +1,7 @@
 package com.proyectosgrt.demo.controllers;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +30,6 @@ public class Solicitudes_controller {
         return listaSolicitudes;
     }
     
-@SuppressWarnings("null")
 @GetMapping("/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
@@ -44,27 +41,19 @@ public List<TablaSolicitudesDTO> solicitudesPersonas(@PathVariable String nodocc
     return repo.findByNodoccliente(nodoccliente);
 }
 
-
-@SuppressWarnings("null")
-@CrossOrigin(origins = "http://localhost:3000/")
 @PostMapping("/adminuser/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
             repo.save(so);
             return "Solicitud Creada";
-            
 }
-
 
 @PutMapping("/adminuser/cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
- 
-    @SuppressWarnings("null")
     Solicitudes actualizar_estado = repo.findById(idsol).get();
     actualizar_estado.setIdest(so.getIdest());
     repo.save(actualizar_estado);
     return "Estado de soliictud actualizado";
 }
-
 
 @PutMapping("/adminuser/modificar/{idsol}")
 public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes so){
@@ -85,7 +74,6 @@ public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes 
 public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setObser(so.getObser());
-
     repo.save(actualizarsol);
     return "Observacion actualizada";
 }
@@ -99,7 +87,5 @@ public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitud
     actualizarsol.setNodoctecnico(so.getNodoctecnico());
     repo.save(actualizarsol);
     return "Solicitud actualizada";
-
 }
-
 }
