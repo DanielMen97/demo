@@ -1,12 +1,9 @@
 package com.proyectosgrt.demo.DTO;
 
-public record SolicitudesDTO(
+public record TablaSolicitudesDTO(
     Long idsol,
     String fechacre,
-    String fechaci,
     String prio,
-    String obser,
-    String diag,
     String nodoccliente,
     String nodoctecnico,
     String idcat,
