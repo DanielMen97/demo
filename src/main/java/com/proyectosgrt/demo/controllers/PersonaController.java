@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
 import com.proyectosgrt.demo.models.Personas;
@@ -35,6 +36,11 @@ public class PersonaController {
   @GetMapping("/admin/listatablapersonas")
   public List<TablaPersonasDTO> listaTablaPersonas(){
     return personasManagementService.getListTablaPersonas();
+  }
+
+  @GetMapping("/admin/tecnicos")
+  public List<ListaTecnicosDTO> getTecnicos() {
+      return personasManagementService.getListTecnicosDTO();
   }
   
 }
