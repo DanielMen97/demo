@@ -30,7 +30,7 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
- @GetMapping("/adminuser/solicitudes")
+ @GetMapping("/admin/solicitudes")
     public List<SolicitudesDTO> getSolicitudes() {
         List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
