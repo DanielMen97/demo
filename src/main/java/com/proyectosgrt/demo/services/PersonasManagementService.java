@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
@@ -73,5 +74,10 @@ public List<TablaPersonasDTO> getListTablaPersonas(){
 public List<ListaTecnicosDTO> getListTecnicosDTO(){
   List<ListaTecnicosDTO> listaTecnicos = repository_Personas.getListTecnicos();
   return listaTecnicos;
+}
+
+public List<ListPersonasDTO> getListaPersonas(){
+  List<ListPersonasDTO> listaPersonas = repository_Personas.getAllPersonas();
+  return listaPersonas;
 }
 }

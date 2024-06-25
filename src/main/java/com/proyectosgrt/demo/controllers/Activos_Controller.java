@@ -67,7 +67,7 @@ public class Activos_Controller {
         return "Activo eliminado";
     }
 
-    @GetMapping("/auth/listtableacts")
+    @GetMapping("/admintechnical/listtableacts")
     public List<TablaActivosDTO> getTableActs() {
         List<TablaActivosDTO> listactivos = rep.getLstTableActivos();
         return listactivos;
