@@ -31,8 +31,8 @@ public class Solicitudes_controller {
         return "Conect";
 }
  @GetMapping("/admin/solicitudes")
-    public List<SolicitudesDTO> getSolicitudes() {
-        List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
+    public List<TablaSolicitudesDTO> getSolicitudes() {
+        List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
     }
     
