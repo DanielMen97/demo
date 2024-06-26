@@ -11,13 +11,13 @@ import com.proyectosgrt.demo.models.Solicitudes;
 
 public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long> {
 
-  @Query("SELECT new com.proyectosgrt.demo.DTO.TablaSolicitudesDTO(s.idsol, s.fechacre, s.prio, s.nodoccliente, s.nodoctecnico, c.nombre, e.nombre) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest")
+  @Query("SELECT new com.proyectosgrt.demo.DTO.TablaSolicitudesDTO(s.idsol, s.fechacre, s.prio, p.pnom, p.pape, s.nodoctecnico, c.nombre, e.nombre) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest INNER JOIN Personas p ON s.nodoccliente = p.nodoc")
   List<TablaSolicitudesDTO> getListSolicitudes();
 
 
     @Query("SELECT s FROM Solicitudes s WHERE s.fechacre BETWEEN ?1 AND ?2")
     List<Solicitudes> getfech (LocalDateTime f1, LocalDateTime f2);
 
-      List<TablaSolicitudesDTO> findByNodoccliente(String nodoccliente);
+      // List<TablaSolicitudesDTO> findByNodoccliente(String nodoccliente);
       
 }

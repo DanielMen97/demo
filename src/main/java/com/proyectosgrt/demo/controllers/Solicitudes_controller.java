@@ -24,7 +24,7 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
- @GetMapping("/adminuser/solicitudes")
+ @GetMapping("/admin/solicitudes")
     public List<TablaSolicitudesDTO> getSolicitudes() {
         List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
@@ -36,10 +36,10 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 
 }
 
-@GetMapping("/auth/Solicitudes/{nodoccliente}")
-public List<TablaSolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
-    return repo.findByNodoccliente(nodoccliente);
-}
+// @GetMapping("/auth/Solicitudes/{nodoccliente}")
+// public List<TablaSolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
+//     return repo.findByNodoccliente(nodoccliente);
+// }
 
 @PostMapping("/adminuser/create_solicitud")
     public String create_solicitud(@RequestBody Solicitudes so) {
