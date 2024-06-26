@@ -15,7 +15,7 @@ public interface Repository_Personas extends JpaRepository<Personas, String>{
 
   Optional<Personas> findByCorreo(String correo);
 
- @Query("SELECT new com.proyectosgrt.demo.DTO.TablaPersonasDTO (tiposdoc.tipo, personas.nodoc, personas.pnom, personas.snom, personas.pape, personas.sape, cargos.nombre, sedes.nombre, personas.role, personas.correo, personas.celular, personas.estado) FROM Personas personas INNER JOIN Cargos cargos ON personas.idcargo = cargos.idcargo INNER JOIN Tiposdoc tiposdoc ON personas.iddoc = tiposdoc.iddoc INNER JOIN Sedes sedes ON personas.idsede = sedes.idsede")
+ @Query("SELECT new com.proyectosgrt.demo.DTO.TablaPersonasDTO (personas.nodoc, personas.pnom, personas.snom, personas.pape, personas.sape, cargos.nombre, sedes.nombre, personas.correo, personas.celular, personas.estado) FROM Personas personas INNER JOIN Cargos cargos ON personas.idcargo = cargos.idcargo INNER JOIN Sedes sedes ON personas.idsede = sedes.idsede")
  List<TablaPersonasDTO> getListTablePersonas();
 
  @Query("SELECT new com.proyectosgrt.demo.DTO.ListPersonasDTO(personas.nodoc, personas.pnom, personas.pape) FROM Personas personas")

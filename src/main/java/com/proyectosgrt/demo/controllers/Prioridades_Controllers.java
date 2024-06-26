@@ -11,7 +11,7 @@ public class Prioridades_Controllers {
 
   @GetMapping("/admin/prioridades")
   public List<String> getListPriority() {
-    List<String> listaPrioridad = Arrays.asList(Prioridad.ALTA.name(), Prioridad.MEDIA.name(), Prioridad.BAJA.name());
+    List<String> listaPrioridad = Arrays.asList(Prioridad.ALTA.name(), Prioridad.MEDIA.name(), Prioridad.BAJA.name(), Prioridad.PENDIENTE.name());
     return listaPrioridad;
   }
   

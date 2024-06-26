@@ -42,9 +42,9 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
 // }
 
 @PostMapping("/adminuser/create_solicitud")
-    public String create_solicitud(@RequestBody Solicitudes so) {
-            repo.save(so);
-            return "Solicitud Creada";
+    public Solicitudes create_solicitud(@RequestBody Solicitudes so) {
+        return repo.save(so);
+            
 }
 
 @PutMapping("/adminuser/cerrar/{idsol}")

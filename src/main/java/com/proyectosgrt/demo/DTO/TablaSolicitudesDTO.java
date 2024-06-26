@@ -6,7 +6,6 @@ public record TablaSolicitudesDTO(
     String prio,
     String pnom,
     String pape,
-    String nodoctecnico,
     String idcat,
     String idest
 )  {
