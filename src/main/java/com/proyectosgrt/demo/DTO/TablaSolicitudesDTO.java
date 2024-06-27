@@ -4,8 +4,8 @@ public record TablaSolicitudesDTO(
     Long idsol,
     String fechacre,
     String prio,
-    String nodoccliente,
-    String nodoctecnico,
+    String pnom,
+    String pape,
     String idcat,
     String idest
 )  {
