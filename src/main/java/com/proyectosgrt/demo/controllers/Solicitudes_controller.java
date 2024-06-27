@@ -106,4 +106,10 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
     repo.save(actualizarSolicitud);
     return actualizarSolicitud;
 }
+
+@GetMapping("/adminuser/solicitudcliente/{nodoccliente}")
+    public List<SolicitudesDTO> getSolicitudesCliente(@PathVariable String nodoccliente){
+        List<SolicitudesDTO> listaSolicitudes = repo.getListMySolicitudes(nodoccliente);
+        return listaSolicitudes;
+}
 }
