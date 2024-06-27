@@ -5,6 +5,7 @@ public record SolicitudesDTO(
   String fechacre,
   String idcat,
   String obser,
+  String prio,
   String pnom,
   String snom,
   String pape,

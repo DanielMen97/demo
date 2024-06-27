@@ -42,10 +42,7 @@ public SolicitudesDTO getSolicitudId(@PathVariable Long idsol){
     return repo.getDetailsSolicitud(idsol);
 }
 
-// @GetMapping("/auth/Solicitudes/{nodoccliente}")
-// public List<TablaSolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
-//     return repo.findByNodoccliente(nodoccliente);
-// }
+
 
 @PostMapping("/adminuser/create_solicitud")
     public Solicitudes create_solicitud(@RequestBody Solicitudes so) {
@@ -86,12 +83,27 @@ public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitude
 
 
 @PutMapping("/admin/modificarTec/{idsol}")
-public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
+public Solicitudes actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setPrio(so.getPrio());
     actualizarsol.setIdest(so.getIdest());
     actualizarsol.setNodoctecnico(so.getNodoctecnico());
     repo.save(actualizarsol);
-    return "Solicitud actualizada";
+    return actualizarsol;
+}
+
+@GetMapping("/technical/listsolicitudes/{nodoctecnico}")
+public List<TablaSolicitudesDTO> getSolicitudes(@PathVariable String nodoctecnico){
+    List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudPorTecnico(nodoctecnico);
+    return listaSolicitudes;
+}
+
+@PutMapping("/technical/updatesolicitud/{idsol}")
+public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solicitudes solicitud){
+    Solicitudes actualizarSolicitud = repo.findById(idsol).get();
+    actualizarSolicitud.setIdest(solicitud.getIdest());
+    actualizarSolicitud.setDiag(solicitud.getDiag());
+    repo.save(actualizarSolicitud);
+    return actualizarSolicitud;
 }
 }

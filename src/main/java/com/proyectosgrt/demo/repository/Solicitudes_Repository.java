@@ -20,7 +20,10 @@ public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long>
 
   // List<TablaSolicitudesDTO> findByNodoccliente(String nodoccliente);
 
-  @Query("SELECT new com.proyectosgrt.demo.DTO.SolicitudesDTO (s.idsol, s.fechacre, c.nombre, s.obser, p.pnom, p.snom, p.pape, p.sape) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Personas p ON s.nodoccliente = p.nodoc WHERE s.idsol = ?1")
+  @Query("SELECT new com.proyectosgrt.demo.DTO.SolicitudesDTO (s.idsol, s.fechacre, c.nombre, s.obser, s.prio, p.pnom, p.snom, p.pape, p.sape) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Personas p ON s.nodoccliente = p.nodoc WHERE s.idsol = ?1")
   SolicitudesDTO getDetailsSolicitud(Long idsol);
+
+  @Query("SELECT new com.proyectosgrt.demo.DTO.TablaSolicitudesDTO(s.idsol, s.fechacre, s.prio, p.pnom, p.pape, c.nombre, e.nombre) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest INNER JOIN Personas p ON s.nodoccliente = p.nodoc WHERE nodoctecnico = ?1")
+  List<TablaSolicitudesDTO> getListSolicitudPorTecnico(String nodoctecnico);
 
 }
