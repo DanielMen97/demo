@@ -43,9 +43,9 @@ public class Activos_Controller {
     //Creacion Activo
     @Operation(summary = "Añadir activo")
     @PostMapping("/admintechnical/add_act")
-    public String add_act(@RequestBody Activos ac) {
-            rep.save(ac);
-            return "Active Add";
+    public Activos add_act(@RequestBody Activos ac) {
+        Activos activos = rep.save(ac);
+        return activos;       
     }
 
     //Editar Usuario
