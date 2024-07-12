@@ -34,20 +34,16 @@ public class Solicitudes_controller {
 @GetMapping("/adminuser/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
-
 }
 
-@GetMapping("/public/solicitud/{idsol}")
+@GetMapping("/adminuser/solicitud/{idsol}")
 public SolicitudesDTO getSolicitudId(@PathVariable Long idsol){
     return repo.getDetailsSolicitud(idsol);
 }
 
-
-
 @PostMapping("/adminuser/create_solicitud")
     public Solicitudes create_solicitud(@RequestBody Solicitudes so) {
-        return repo.save(so);
-            
+        return repo.save(so);            
 }
 
 @PutMapping("/adminuser/cerrar/{idsol}")

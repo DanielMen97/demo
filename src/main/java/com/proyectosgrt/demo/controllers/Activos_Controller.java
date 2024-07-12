@@ -16,6 +16,8 @@ import com.proyectosgrt.demo.models.Activos;
 import com.proyectosgrt.demo.repository.Repository_Activos;
 
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -30,14 +32,20 @@ public class Activos_Controller {
     @GetMapping("/admintechnical/act")
     public String incio() {
         return "Conect";
-    }   
-
-    //Consulta Activo
-    @Operation(summary = "Obtener lista de activos registrados")
-    @GetMapping("/admintechnical/acts")
-    public List<Activos> getActivos() {
-        return rep.findAll();
     }
+    
+    @GetMapping("/admintechnical/activo/{idserial}")
+    public Activos getActivoById(@PathVariable String idserial) {
+        Activos activo = rep.findByIdserial(idserial);
+        return activo;
+    }
+    
+    // //Consulta Activo
+    // @Operation(summary = "Obtener lista de activos registrados")
+    // @GetMapping("/admintechnical/acts")
+    // public List<Activos> getActivos() {
+    //     return rep.findAll();
+    // }
 
     //Creacion Activo
     @Operation(summary = "Añadir activo")
