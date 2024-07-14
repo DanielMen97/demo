@@ -6,10 +6,12 @@ public record SolicitudesDTO(
   String idcat,
   String obser,
   String prio,
+  String idest,
   String pnom,
   String snom,
   String pape,
-  String sape
+  String sape,
+  String fechaci
 ) {
 
 }

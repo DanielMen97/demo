@@ -36,7 +36,7 @@ public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
 }
 
-@GetMapping("/adminuser/solicitud/{idsol}")
+@GetMapping("/public/solicitud/{idsol}")
 public SolicitudesDTO getSolicitudId(@PathVariable Long idsol){
     return repo.getDetailsSolicitud(idsol);
 }
@@ -99,6 +99,7 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
     Solicitudes actualizarSolicitud = repo.findById(idsol).get();
     actualizarSolicitud.setIdest(solicitud.getIdest());
     actualizarSolicitud.setDiag(solicitud.getDiag());
+    actualizarSolicitud.setFechaci(solicitud.getFechaci());
     repo.save(actualizarSolicitud);
     return actualizarSolicitud;
 }
