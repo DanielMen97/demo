@@ -16,7 +16,7 @@ import com.proyectosgrt.demo.models.Activos;
 import com.proyectosgrt.demo.repository.Repository_Activos;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -58,22 +58,22 @@ public class Activos_Controller {
     //Editar Usuario
     @Operation(summary = "Editar información de activo registrado")
     @PutMapping("/admintechnical/edit_act/{idserial}")
-    public String edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
+    public Activos edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
         Activos actualizarActivos = rep.findById(idserial).get();
         actualizarActivos.setModelo(ac.getModelo());
         actualizarActivos.setIdtipo(ac.getIdtipo());
         actualizarActivos.setIdmarca(ac.getIdmarca());
         rep.save(actualizarActivos);
-        return "Activo editado";        
+        return actualizarActivos;        
     }
 
     //Eliminar Activo
     @Operation(summary = "Eliminar activo")
     @DeleteMapping("/admintechnical/delete_act/{idserial}")
-    public String eliminarActivo (@PathVariable("idserial") String idseiral){
+    public Activos eliminarActivo (@PathVariable("idserial") String idseiral){
         Activos borrauActivos = rep.findById(idseiral).get();
         rep.delete(borrauActivos);
-        return "Activo eliminado";
+        return borrauActivos;
     }
 
     @GetMapping("/admintechnical/listtableacts")
