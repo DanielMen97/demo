@@ -16,7 +16,7 @@ import com.proyectosgrt.demo.models.Activos;
 import com.proyectosgrt.demo.repository.Repository_Activos;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
