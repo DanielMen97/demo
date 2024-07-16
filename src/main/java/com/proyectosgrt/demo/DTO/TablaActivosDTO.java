@@ -5,7 +5,9 @@ public record TablaActivosDTO(
 String idserial,
 String modelo,
 String idtipo,
-String idmarca
+String idmarca,
+String pnom,
+String pape
 ) {
 
 }

@@ -16,6 +16,7 @@ import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
+import com.proyectosgrt.demo.DTO.UserDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.repository.Repository_Personas;
 
@@ -51,12 +52,12 @@ public class PersonasManagementService {
     personas.setEstado(dto.isEstado());
 
     return repository_Personas.save(personas);
-}
+  }
 
-public PersonasDTO login(PersonasDTO log){
-  PersonasDTO personas = new PersonasDTO();
-  authenticationManager
-    .authenticate(new UsernamePasswordAuthenticationToken(log.getCorreo(), log.getPass()));
+  public PersonasDTO login(PersonasDTO log) {
+    PersonasDTO personas = new PersonasDTO();
+    authenticationManager
+        .authenticate(new UsernamePasswordAuthenticationToken(log.getCorreo(), log.getPass()));
 
     var user = repository_Personas.findByCorreo(log.getCorreo()).orElseThrow();
     var jwt = jwtUtils.generateToken(user);
@@ -68,39 +69,49 @@ public PersonasDTO login(PersonasDTO log){
     personas.setNodoc(user.getNodoc());
 
     return personas;
-}
+  }
 
-public List<TablaPersonasDTO> getListTablaPersonas(){
-  List<TablaPersonasDTO> listaTablaPersonas = repository_Personas.getListTablePersonas();
-  return listaTablaPersonas;
-}
+  public List<TablaPersonasDTO> getListTablaPersonas() {
+    List<TablaPersonasDTO> listaTablaPersonas = repository_Personas.getListTablePersonas();
+    return listaTablaPersonas;
+  }
 
-public List<ListaTecnicosDTO> getListTecnicosDTO(){
-  List<ListaTecnicosDTO> listaTecnicos = repository_Personas.getListTecnicos();
-  return listaTecnicos;
-}
+  public List<ListaTecnicosDTO> getListTecnicosDTO() {
+    List<ListaTecnicosDTO> listaTecnicos = repository_Personas.getListTecnicos();
+    return listaTecnicos;
+  }
 
-public List<ListPersonasDTO> getListaPersonas(){
-  List<ListPersonasDTO> listaPersonas = repository_Personas.getAllPersonas();
-  return listaPersonas;
-}
+  public List<ListPersonasDTO> getListaPersonas() {
+    List<ListPersonasDTO> listaPersonas = repository_Personas.getAllPersonas();
+    return listaPersonas;
+  }
 
-public Optional<Personas> getUserById(String nodoc){
-  Optional<Personas> persona = repository_Personas.findById(nodoc);
+  // public Optional<Personas> getUserById(String nodoc){
+  // Optional<Personas> persona = repository_Personas.findById(nodoc);
+  // return persona;
+  // }
+
+  public UserDTO getUserByNodoc(String nodoc) {
+    UserDTO persona = repository_Personas.getUserDTO(nodoc);
     return persona;
-}
+  }
 
-public Personas updateUser(String nodoc, Personas user){
-  Personas persona = repository_Personas.findById(nodoc).get();
-  persona.setCelular(user.getCelular());
-  persona.setEstado(user.isEstado());
-  persona.setIdcargo(user.getIdcargo());
-  persona.setIddoc(user.getIddoc());
-  persona.setPass(passwordEncoder.encode(user.getPass()));
-  persona.setIdsede(user.getIdsede());
-  persona.setPnom(user.getPnom());
-  persona.setSnom(user.getSnom());
-  persona.setSape(user.getSape());
-  persona.setPape(user.getPape());
-}
+  public Personas updateUser(String nodoc, Personas user) {
+    Personas persona = repository_Personas.findById(nodoc).get();
+    persona.setCelular(user.getCelular());
+    persona.setEstado(user.isEstado());
+    persona.setIdcargo(user.getIdcargo());
+    persona.setIddoc(user.getIddoc());
+    persona.setIdsede(user.getIdsede());
+    persona.setPnom(user.getPnom());
+    persona.setSnom(user.getSnom());
+    persona.setSape(user.getSape());
+    persona.setPape(user.getPape());
+
+    if (user.getPass() != null && !user.getPass().isEmpty()) {
+      persona.setPass(passwordEncoder.encode(user.getPass()));
+    }
+
+    return repository_Personas.save(persona);
+  }
 }

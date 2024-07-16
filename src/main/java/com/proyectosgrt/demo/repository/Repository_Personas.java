@@ -10,6 +10,7 @@ import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
+import com.proyectosgrt.demo.DTO.UserDTO;
 
 public interface Repository_Personas extends JpaRepository<Personas, String> {
 
@@ -23,5 +24,8 @@ public interface Repository_Personas extends JpaRepository<Personas, String> {
 
   @Query("SELECT new com.proyectosgrt.demo.DTO.ListaTecnicosDTO (personas.nodoc, personas.pnom, personas.pape) FROM Personas personas WHERE personas.role = 'TECHNICAL'")
   List<ListaTecnicosDTO> getListTecnicos();
+
+  @Query("SELECT new com.proyectosgrt.demo.DTO.UserDTO (personas.nodoc, personas.pnom, personas.snom, personas.pape, personas.sape, personas.celular, personas.correo, personas.idsede, personas.iddoc, personas.idcargo, personas.role, personas.estado) FROM Personas personas WHERE personas.nodoc = ?1")
+  UserDTO getUserDTO(String nodoc);
 
 }

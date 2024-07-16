@@ -63,6 +63,7 @@ public class Activos_Controller {
         actualizarActivos.setModelo(ac.getModelo());
         actualizarActivos.setIdtipo(ac.getIdtipo());
         actualizarActivos.setIdmarca(ac.getIdmarca());
+        actualizarActivos.setIdperson(ac.getIdperson());
         rep.save(actualizarActivos);
         return actualizarActivos;        
     }

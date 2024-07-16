@@ -15,9 +15,10 @@ import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
 import com.proyectosgrt.demo.DTO.TablaPersonasDTO;
+import com.proyectosgrt.demo.DTO.UserDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.services.PersonasManagementService;
-
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 public class PersonaController {
@@ -26,7 +27,7 @@ public class PersonaController {
   private PersonasManagementService personasManagementService;
 
   @PostMapping("/admin/create")
-   public ResponseEntity<Personas> createUser(@RequestBody PersonasDTO dto) {
+  public ResponseEntity<Personas> createUser(@RequestBody PersonasDTO dto) {
     Personas createdPersonas = personasManagementService.createUser(dto);
     return ResponseEntity.ok(createdPersonas);
   }
@@ -34,27 +35,41 @@ public class PersonaController {
   @PostMapping("/auth/login")
   public ResponseEntity<PersonasDTO> loginUser(@RequestBody PersonasDTO dto) {
     PersonasDTO loginPersonas = personasManagementService.login(dto);
-      return ResponseEntity.ok(loginPersonas);
+    return ResponseEntity.ok(loginPersonas);
   }
 
   @GetMapping("/admin/listatablapersonas")
-  public List<TablaPersonasDTO> listaTablaPersonas(){
+  public List<TablaPersonasDTO> listaTablaPersonas() {
     return personasManagementService.getListTablaPersonas();
   }
 
   @GetMapping("/admin/tecnicos")
   public List<ListaTecnicosDTO> getTecnicos() {
-      return personasManagementService.getListTecnicosDTO();
+    return personasManagementService.getListTecnicosDTO();
   }
 
   @GetMapping("/admintechnical/listapersonas")
   public List<ListPersonasDTO> getAllPersonas() {
-      return personasManagementService.getListaPersonas();
+    return personasManagementService.getListaPersonas();
   }
-  
-  @GetMapping("/admin/user/{nodoc}")
-  public Optional<Personas> getUser(@PathVariable String nodoc) {
-      return personasManagementService.getUserById(nodoc);
+
+  // @GetMapping("/admin/userbynodoc/{nodoc}")
+  // public Optional<Personas> getUser(@PathVariable String nodoc) {
+  // return personasManagementService.getUserById(nodoc);
+  // }
+
+  @GetMapping("/admin/userbynodoc/{nodoc}")
+  public UserDTO getUserDTOByNodoc(@PathVariable String nodoc) {
+    return personasManagementService.getUserByNodoc(nodoc);
   }
-  
+
+  @GetMapping("/public/myinfo/{nodoc}")
+  public UserDTO getMyInfo(@PathVariable String nodoc) {
+    return personasManagementService.getUserByNodoc(nodoc);
+  }
+
+  @PutMapping("/admin/updateuser/{nodoc}")
+  public Personas updateUser(@PathVariable String nodoc, @RequestBody Personas userData) {
+    return personasManagementService.updateUser(nodoc, userData);
+  }
 }
