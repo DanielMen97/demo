@@ -2,8 +2,11 @@ package com.proyectosgrt.demo.services;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.web.exchanges.HttpExchange.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,5 +83,24 @@ public List<ListaTecnicosDTO> getListTecnicosDTO(){
 public List<ListPersonasDTO> getListaPersonas(){
   List<ListPersonasDTO> listaPersonas = repository_Personas.getAllPersonas();
   return listaPersonas;
+}
+
+public Optional<Personas> getUserById(String nodoc){
+  Optional<Personas> persona = repository_Personas.findById(nodoc);
+    return persona;
+}
+
+public Personas updateUser(String nodoc, Personas user){
+  Personas persona = repository_Personas.findById(nodoc).get();
+  persona.setCelular(user.getCelular());
+  persona.setEstado(user.isEstado());
+  persona.setIdcargo(user.getIdcargo());
+  persona.setIddoc(user.getIddoc());
+  persona.setPass(passwordEncoder.encode(user.getPass()));
+  persona.setIdsede(user.getIdsede());
+  persona.setPnom(user.getPnom());
+  persona.setSnom(user.getSnom());
+  persona.setSape(user.getSape());
+  persona.setPape(user.getPape());
 }
 }
