@@ -19,6 +19,8 @@ import io.swagger.v3.oas.annotations.Operation;
 
 
 
+
+
 @RestController
 public class Activos_Controller {
 
@@ -30,14 +32,20 @@ public class Activos_Controller {
     @GetMapping("/admintechnical/act")
     public String incio() {
         return "Conect";
-    }   
-
-    //Consulta Activo
-    @Operation(summary = "Obtener lista de activos registrados")
-    @GetMapping("/admintechnical/acts")
-    public List<Activos> getActivos() {
-        return rep.findAll();
     }
+    
+    @GetMapping("/admintechnical/activo/{idserial}")
+    public Activos getActivoById(@PathVariable String idserial) {
+        Activos activo = rep.findByIdserial(idserial);
+        return activo;
+    }
+    
+    // //Consulta Activo
+    // @Operation(summary = "Obtener lista de activos registrados")
+    // @GetMapping("/admintechnical/acts")
+    // public List<Activos> getActivos() {
+    //     return rep.findAll();
+    // }
 
     //Creacion Activo
     @Operation(summary = "Añadir activo")
@@ -50,22 +58,23 @@ public class Activos_Controller {
     //Editar Usuario
     @Operation(summary = "Editar información de activo registrado")
     @PutMapping("/admintechnical/edit_act/{idserial}")
-    public String edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
+    public Activos edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
         Activos actualizarActivos = rep.findById(idserial).get();
         actualizarActivos.setModelo(ac.getModelo());
         actualizarActivos.setIdtipo(ac.getIdtipo());
         actualizarActivos.setIdmarca(ac.getIdmarca());
+        actualizarActivos.setIdperson(ac.getIdperson());
         rep.save(actualizarActivos);
-        return "Activo editado";        
+        return actualizarActivos;        
     }
 
     //Eliminar Activo
     @Operation(summary = "Eliminar activo")
     @DeleteMapping("/admintechnical/delete_act/{idserial}")
-    public String eliminarActivo (@PathVariable("idserial") String idseiral){
+    public Activos eliminarActivo (@PathVariable("idserial") String idseiral){
         Activos borrauActivos = rep.findById(idseiral).get();
         rep.delete(borrauActivos);
-        return "Activo eliminado";
+        return borrauActivos;
     }
 
     @GetMapping("/admintechnical/listtableacts")
