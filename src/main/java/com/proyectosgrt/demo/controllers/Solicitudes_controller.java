@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -109,4 +112,11 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
         List<SolicitudesDTO> listaSolicitudes = repo.getListMySolicitudes(nodoccliente);
         return listaSolicitudes;
 }
+
+@GetMapping("/adminuser/detallesolicitud/{idsol}")
+    public DetalleSolicitudDTO getDetalleSolicitudById(@PathVariable Long idsol) {
+        DetalleSolicitudDTO solicitud = repo.getDetalleSolicitud(idsol);
+        return solicitud;
+}
+
 }
