@@ -1,7 +1,6 @@
 package com.proyectosgrt.demo.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -64,8 +63,8 @@ public class PersonaController {
   }
 
   @GetMapping("/public/myinfo/{nodoc}")
-  public UserDTO getMyInfo(@PathVariable String nodoc) {
-    return personasManagementService.getUserByNodoc(nodoc);
+  public TablaPersonasDTO getMyInfo(@PathVariable String nodoc) {
+    return personasManagementService.getUserByNodocSer(nodoc);
   }
 
   @PutMapping("/admin/updateuser/{nodoc}")

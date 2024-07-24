@@ -2,11 +2,8 @@ package com.proyectosgrt.demo.services;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.web.exchanges.HttpExchange.Response;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -93,6 +90,11 @@ public class PersonasManagementService {
 
   public UserDTO getUserByNodoc(String nodoc) {
     UserDTO persona = repository_Personas.getUserDTO(nodoc);
+    return persona;
+  }
+
+  public TablaPersonasDTO getUserByNodocSer(String nodoc) {
+    TablaPersonasDTO persona = repository_Personas.getUserByNodocRep(nodoc);
     return persona;
   }
 
