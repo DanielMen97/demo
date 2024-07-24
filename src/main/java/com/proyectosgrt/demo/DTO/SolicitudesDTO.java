@@ -1,18 +1,17 @@
 package com.proyectosgrt.demo.DTO;
 
 public record SolicitudesDTO(
-    Long idsol,
-    String fechacre,
-    String fechaci,
-    String prio,
-    String obser,
-    String diag,
-    String nodoccliente,
-    String nodoctecnico,
-    String idcat,
-    String idest
-)  {
-   
+  Long idsol,
+  String fechacre,
+  String idcat,
+  String obser,
+  String prio,
+  String idest,
+  String pnom,
+  String snom,
+  String pape,
+  String sape,
+  String fechaci
+) {
 
-  
 }

@@ -18,6 +18,9 @@ import com.proyectosgrt.demo.repository.Repository_Activos;
 import io.swagger.v3.oas.annotations.Operation;
 
 
+
+
+
 @RestController
 public class Activos_Controller {
 
@@ -26,52 +29,66 @@ public class Activos_Controller {
 
     //Consulta Generica
     @Operation(summary = "EndPoint conexión de prueba")
-    @GetMapping("/act")
+    @GetMapping("/admintechnical/act")
     public String incio() {
         return "Conect";
-    }   
-
-    //Consulta Activo
-    @Operation(summary = "Obtener lista de activos registrados")
-    @GetMapping("/acts")
-    public List<Activos> getActivos() {
-        return rep.findAll();
     }
+    
+    @GetMapping("/admintechnical/activo/{idserial}")
+    public Activos getActivoById(@PathVariable String idserial) {
+        Activos activo = rep.findByIdserial(idserial);
+        return activo;
+    }
+    
+    // //Consulta Activo
+    // @Operation(summary = "Obtener lista de activos registrados")
+    // @GetMapping("/admintechnical/acts")
+    // public List<Activos> getActivos() {
+    //     return rep.findAll();
+    // }
 
     //Creacion Activo
     @Operation(summary = "Añadir activo")
-    @PostMapping("/add_act")
-    public String add_act(@RequestBody Activos ac) {
-            rep.save(ac);
-            return "Active Add";
+    @PostMapping("/admintechnical/add_act")
+    public Activos add_act(@RequestBody Activos ac) {
+        Activos activos = rep.save(ac);
+        return activos;       
     }
 
     //Editar Usuario
     @Operation(summary = "Editar información de activo registrado")
-    @PutMapping("/edit_act/{idserial}")
-    public String edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
+    @PutMapping("/admintechnical/edit_act/{idserial}")
+    public Activos edit_act(@PathVariable String idserial, @RequestBody Activos ac) {
         Activos actualizarActivos = rep.findById(idserial).get();
         actualizarActivos.setModelo(ac.getModelo());
         actualizarActivos.setIdtipo(ac.getIdtipo());
         actualizarActivos.setIdmarca(ac.getIdmarca());
+        actualizarActivos.setIdperson(ac.getIdperson());
         rep.save(actualizarActivos);
-        return "Activo editado";        
+        return actualizarActivos;        
     }
 
     //Eliminar Activo
     @Operation(summary = "Eliminar activo")
-    @DeleteMapping("/delete_act/{idserial}")
-    public String eliminarActivo (@PathVariable("idserial") String idseiral){
+    @DeleteMapping("/admintechnical/delete_act/{idserial}")
+    public Activos eliminarActivo (@PathVariable("idserial") String idseiral){
         Activos borrauActivos = rep.findById(idseiral).get();
         rep.delete(borrauActivos);
-        return "Activo eliminado";
+        return borrauActivos;
     }
 
-    @GetMapping("/auth/listtableacts")
+    @GetMapping("/admintechnical/listtableacts")
     public List<TablaActivosDTO> getTableActs() {
         List<TablaActivosDTO> listactivos = rep.getLstTableActivos();
         return listactivos;
     }
+    
+    @GetMapping("/adminuser/listactsuser/{idperson}")
+    public List<TablaActivosDTO> getListActsPers(@PathVariable String idperson) {
+        List<TablaActivosDTO> activosUser = rep.getLstTableActivosByUser(idperson);
+        return activosUser;
+    }
+    
 }
 
 

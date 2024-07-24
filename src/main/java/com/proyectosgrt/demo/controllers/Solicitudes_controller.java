@@ -1,23 +1,20 @@
 package com.proyectosgrt.demo.controllers;
-
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
+import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController
@@ -30,45 +27,34 @@ public class Solicitudes_controller {
     public String incio() {
         return "Conect";
 }
- @GetMapping("/adminuser/solicitudes")
-    public List<SolicitudesDTO> getSolicitudes() {
-        List<SolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
+ @GetMapping("/admin/solicitudes")
+    public List<TablaSolicitudesDTO> getSolicitudes() {
+        List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudes();
         return listaSolicitudes;
     }
     
-@SuppressWarnings("null")
-@GetMapping("/solicitudid/{idsol}")
+@GetMapping("/adminuser/solicitudid/{idsol}")
 public Solicitudes solicitudid(@PathVariable Long idsol) {
     return repo.findById(idsol).orElse(null);
-
 }
 
-@GetMapping("/auth/Solicitudes/{nodoccliente}")
-public List<SolicitudesDTO> solicitudesPersonas(@PathVariable String nodoccliente) {
-    return repo.findByNodoccliente(nodoccliente);
+@GetMapping("/public/solicitud/{idsol}")
+public SolicitudesDTO getSolicitudId(@PathVariable Long idsol){
+    return repo.getDetailsSolicitud(idsol);
 }
 
-
-@SuppressWarnings("null")
-@CrossOrigin(origins = "http://localhost:3000/")
 @PostMapping("/adminuser/create_solicitud")
-    public String create_solicitud(@RequestBody Solicitudes so) {
-            repo.save(so);
-            return "Solicitud Creada";
-            
+    public Solicitudes create_solicitud(@RequestBody Solicitudes so) {
+        return repo.save(so);            
 }
-
 
 @PutMapping("/adminuser/cerrar/{idsol}")
 public String actulizar(@PathVariable Long idsol, @RequestBody Solicitudes so) {
- 
-    @SuppressWarnings("null")
     Solicitudes actualizar_estado = repo.findById(idsol).get();
     actualizar_estado.setIdest(so.getIdest());
     repo.save(actualizar_estado);
     return "Estado de soliictud actualizado";
 }
-
 
 @PutMapping("/adminuser/modificar/{idsol}")
 public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes so){
@@ -89,31 +75,47 @@ public String actualizarsol (@PathVariable long idsol, @RequestBody Solicitudes 
 public String actualizarobser (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setObser(so.getObser());
-
     repo.save(actualizarsol);
     return "Observacion actualizada";
 }
 
-@GetMapping("/adminuser/solicitud_fecha")
-    public List <Solicitudes> Solicitudes(@RequestBody Map<String, String> body) {
-        String fecha1 = body.get("fecha1");
-        String fecha2 = body.get("fecha2");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-
-    LocalDateTime f1 = LocalDateTime.parse(fecha1, formatter);
-    LocalDateTime f2 = LocalDateTime.parse(fecha2, formatter);
-        return repo.getfech(f1, f2);
-}
 
 @PutMapping("/admin/modificarTec/{idsol}")
-public String actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
+public Solicitudes actualizarsolTec (@PathVariable long idsol, @RequestBody Solicitudes so){
     Solicitudes actualizarsol = repo.findById(idsol).get();
     actualizarsol.setPrio(so.getPrio());
     actualizarsol.setIdest(so.getIdest());
     actualizarsol.setNodoctecnico(so.getNodoctecnico());
     repo.save(actualizarsol);
-    return "Solicitud actualizada";
+    return actualizarsol;
+}
 
+@GetMapping("/technical/listsolicitudes/{nodoctecnico}")
+public List<TablaSolicitudesDTO> getSolicitudes(@PathVariable String nodoctecnico){
+    List<TablaSolicitudesDTO> listaSolicitudes = repo.getListSolicitudPorTecnico(nodoctecnico);
+    return listaSolicitudes;
+}
+
+@PutMapping("/technical/updatesolicitud/{idsol}")
+public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solicitudes solicitud){
+    Solicitudes actualizarSolicitud = repo.findById(idsol).get();
+    actualizarSolicitud.setIdest(solicitud.getIdest());
+    actualizarSolicitud.setDiag(solicitud.getDiag());
+    actualizarSolicitud.setFechaci(solicitud.getFechaci());
+    repo.save(actualizarSolicitud);
+    return actualizarSolicitud;
+}
+
+@GetMapping("/adminuser/solicitudcliente/{nodoccliente}")
+    public List<SolicitudesDTO> getSolicitudesCliente(@PathVariable String nodoccliente){
+        List<SolicitudesDTO> listaSolicitudes = repo.getListMySolicitudes(nodoccliente);
+        return listaSolicitudes;
+}
+
+@GetMapping("/adminuser/detallesolicitud/{idsol}")
+    public DetalleSolicitudDTO getDetalleSolicitudById(@PathVariable Long idsol) {
+        DetalleSolicitudDTO solicitud = repo.getDetalleSolicitud(idsol);
+        return solicitud;
 }
 
 }
