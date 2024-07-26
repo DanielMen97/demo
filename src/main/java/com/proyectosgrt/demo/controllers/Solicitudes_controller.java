@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
-import com.proyectosgrt.demo.DTO.EstadisticaSolicitudDTO;
-import com.proyectosgrt.demo.DTO.EstadisticaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
@@ -120,15 +118,4 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
         return solicitud;
 }
 
-@GetMapping("/public/estadisticatecnicos")
-    public List<EstadisticaTecnicosDTO> getEstTecnicos(){
-        List<EstadisticaTecnicosDTO> estadistica = repo.getEstadisticaTecnico();
-        return estadistica;
-}
-
-@GetMapping("/public/estadisticasolicitud")
-    public List<EstadisticaSolicitudDTO> getEstSolicitud(){
-        List<EstadisticaSolicitudDTO> estadistica = repo.getEstadisticaSolicitud();
-        return estadistica;
-}
 }
