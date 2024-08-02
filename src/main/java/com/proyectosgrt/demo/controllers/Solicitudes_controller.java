@@ -1,22 +1,24 @@
 package com.proyectosgrt.demo.controllers;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
-import com.proyectosgrt.demo.DTO.EstadisticasTecnicosDTO;
+import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -123,19 +125,10 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
         return solicitud;
 }
 
-@GetMapping("/public/cerradasxtecnico")
-public List<Object> getEstadisticaTecnico() {
-    List<Object> estadistica = repo.getEstaTecnicos();
-    return estadistica;
-}
-
-// @GetMapping("/public/testcount")
-// public Optional<Solicitudes> getTest() {
-//     Optional<Solicitudes> prueba = repo.getByCount();
-//     return prueba;
-// }
-
-
+@GetMapping("/admin/estadisticatecnicos")
+    public List<EstTecnicoDTO> getConPrueba(){
+        return repo.getEstTecnicos();
+    }
 
 
 }
