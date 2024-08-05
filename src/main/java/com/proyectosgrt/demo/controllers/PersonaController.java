@@ -19,6 +19,7 @@ import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.services.PersonasManagementService;
 import org.springframework.web.bind.annotation.PutMapping;
 
+
 @RestController
 public class PersonaController {
 
@@ -52,11 +53,6 @@ public class PersonaController {
     return personasManagementService.getListaPersonas();
   }
 
-  // @GetMapping("/admin/userbynodoc/{nodoc}")
-  // public Optional<Personas> getUser(@PathVariable String nodoc) {
-  // return personasManagementService.getUserById(nodoc);
-  // }
-
   @GetMapping("/admin/userbynodoc/{nodoc}")
   public UserDTO getUserDTOByNodoc(@PathVariable String nodoc) {
     return personasManagementService.getUserByNodoc(nodoc);
@@ -71,4 +67,5 @@ public class PersonaController {
   public Personas updateUser(@PathVariable String nodoc, @RequestBody Personas userData) {
     return personasManagementService.updateUser(nodoc, userData);
   }
+  
 }
