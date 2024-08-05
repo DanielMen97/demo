@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
+import com.proyectosgrt.demo.DTO.EstSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
@@ -130,5 +131,9 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
         return repo.getEstTecnicos();
     }
 
+@GetMapping("/admin/estadisticasolicitudes")
+    public List<EstSolicitudDTO> getEstSolicitud(){
+        return repo.getEstSolicitudEstado();
+    }
 
 }
