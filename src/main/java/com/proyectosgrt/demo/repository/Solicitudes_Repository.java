@@ -43,4 +43,8 @@ public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long>
 
   @Query("SELECT new com.proyectosgrt.demo.DTO.ReporteSolicitudDTO (s.idsol, s.fechacre, c.nombre, e.nombre, s.prio, s.nodoccliente, TRIM(REPLACE(CONCAT(p1.pnom, ' ', COALESCE(p1.snom, ''), ' ', p1.pape, ' ', COALESCE(p1.sape, '')), '  ', ' ')), s.nodoctecnico, TRIM(REPLACE(CONCAT(p2.pnom, ' ', COALESCE(p2.snom, ''), ' ', p2.pape, ' ', COALESCE(p2.sape, '')), '  ', ' ')), s.obser, s.diag, s.fechaci) FROM Solicitudes s LEFT JOIN Personas p1 ON s.nodoccliente = p1.nodoc LEFT JOIN Personas p2 ON s.nodoctecnico = p2.nodoc INNER JOIN Estados e ON s.idest = e.idest INNER JOIN Categorias c ON s.idcat = c.idcat")
   List<ReporteSolicitudDTO> getReporteSolicitud();
+
+  
 }
+
+

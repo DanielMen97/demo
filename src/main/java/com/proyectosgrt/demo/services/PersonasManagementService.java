@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.proyectosgrt.demo.DTO.EstPersonaDTO;
 import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
@@ -115,5 +116,9 @@ public class PersonasManagementService {
     }
 
     return repository_Personas.save(persona);
+  }
+
+  public List<EstPersonaDTO> getEstPersonas() {
+      return repository_Personas.getEstPersonasDTO();
   }
 }
