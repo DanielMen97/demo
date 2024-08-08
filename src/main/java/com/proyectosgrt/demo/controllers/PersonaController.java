@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectosgrt.demo.DTO.EstPersonaDTO;
 import com.proyectosgrt.demo.DTO.ListPersonasDTO;
 import com.proyectosgrt.demo.DTO.ListaTecnicosDTO;
 import com.proyectosgrt.demo.DTO.PersonasDTO;
@@ -18,6 +19,8 @@ import com.proyectosgrt.demo.DTO.UserDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.services.PersonasManagementService;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -67,5 +70,12 @@ public class PersonaController {
   public Personas updateUser(@PathVariable String nodoc, @RequestBody Personas userData) {
     return personasManagementService.updateUser(nodoc, userData);
   }
+
+  @GetMapping("/admin/reportespersonas")
+  public List<EstPersonaDTO> getEstPersonasServices() {
+    return personasManagementService.getEstPersonas();
+}
+  
+  
   
 }

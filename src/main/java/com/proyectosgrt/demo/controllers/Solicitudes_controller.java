@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyectosgrt.demo.DTO.DetalleSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
+import com.proyectosgrt.demo.DTO.ReporteSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -135,5 +138,11 @@ public Solicitudes updateSolicitud(@PathVariable Long idsol, @RequestBody Solici
     public List<EstSolicitudDTO> getEstSolicitud(){
         return repo.getEstSolicitudEstado();
     }
+
+@GetMapping("/admin/reportesolicitudes")
+public List<ReporteSolicitudDTO> getReporteSolicitudesC() {
+    return repo.getReporteSolicitud();
+}
+
 
 }
