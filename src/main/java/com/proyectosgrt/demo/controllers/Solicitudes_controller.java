@@ -12,11 +12,14 @@ import com.proyectosgrt.demo.DTO.EstSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
 import com.proyectosgrt.demo.DTO.ReporteSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
+import com.proyectosgrt.demo.DTO.SolicitudesMovilDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class Solicitudes_controller {
@@ -134,5 +137,8 @@ public List<ReporteSolicitudDTO> getReporteSolicitudesC() {
     return repo.getReporteSolicitud();
 }
 
-
+@GetMapping("/adminuser/movil/solicitudes/{nodoccliente}")
+public List<SolicitudesMovilDTO> getSolicitudesMovil(@PathVariable String nodoccliente) {
+    return repo.getListMySolicitudesMovil(nodoccliente);
+}
 }
