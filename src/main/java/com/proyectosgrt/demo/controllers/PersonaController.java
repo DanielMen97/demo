@@ -19,9 +19,6 @@ import com.proyectosgrt.demo.DTO.UserDTO;
 import com.proyectosgrt.demo.models.Personas;
 import com.proyectosgrt.demo.services.PersonasManagementService;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @RestController
 public class PersonaController {

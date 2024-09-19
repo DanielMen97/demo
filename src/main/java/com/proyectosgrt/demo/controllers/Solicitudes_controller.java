@@ -1,10 +1,7 @@
 package com.proyectosgrt.demo.controllers;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,17 +12,13 @@ import com.proyectosgrt.demo.DTO.EstSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
 import com.proyectosgrt.demo.DTO.ReporteSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
+import com.proyectosgrt.demo.DTO.SolicitudesMovilDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 import com.proyectosgrt.demo.repository.Solicitudes_Repository;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
-
-
-
 
 
 @RestController
@@ -144,5 +137,8 @@ public List<ReporteSolicitudDTO> getReporteSolicitudesC() {
     return repo.getReporteSolicitud();
 }
 
-
+@GetMapping("/adminuser/movil/solicitudes/{nodoccliente}")
+public List<SolicitudesMovilDTO> getSolicitudesMovil(@PathVariable String nodoccliente) {
+    return repo.getListMySolicitudesMovil(nodoccliente);
+}
 }

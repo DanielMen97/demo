@@ -17,12 +17,6 @@ import com.proyectosgrt.demo.models.Activos;
 import com.proyectosgrt.demo.repository.Repository_Activos;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-
-
-
 
 @RestController
 public class Activos_Controller {
@@ -32,7 +26,7 @@ public class Activos_Controller {
 
     //Consulta Generica
     @Operation(summary = "EndPoint conexión de prueba")
-    @GetMapping("/admintechnical/act")
+    @GetMapping("/public/act")
     public String incio() {
         return "Conect";
     }

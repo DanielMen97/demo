@@ -10,6 +10,7 @@ import com.proyectosgrt.demo.DTO.EstSolicitudDTO;
 import com.proyectosgrt.demo.DTO.EstTecnicoDTO;
 import com.proyectosgrt.demo.DTO.ReporteSolicitudDTO;
 import com.proyectosgrt.demo.DTO.SolicitudesDTO;
+import com.proyectosgrt.demo.DTO.SolicitudesMovilDTO;
 import com.proyectosgrt.demo.DTO.TablaSolicitudesDTO;
 import com.proyectosgrt.demo.models.Solicitudes;
 
@@ -44,7 +45,8 @@ public interface Solicitudes_Repository extends JpaRepository<Solicitudes, Long>
   @Query("SELECT new com.proyectosgrt.demo.DTO.ReporteSolicitudDTO (s.idsol, s.fechacre, c.nombre, e.nombre, s.prio, s.nodoccliente, TRIM(REPLACE(CONCAT(p1.pnom, ' ', COALESCE(p1.snom, ''), ' ', p1.pape, ' ', COALESCE(p1.sape, '')), '  ', ' ')), s.nodoctecnico, TRIM(REPLACE(CONCAT(p2.pnom, ' ', COALESCE(p2.snom, ''), ' ', p2.pape, ' ', COALESCE(p2.sape, '')), '  ', ' ')), s.obser, s.diag, s.fechaci) FROM Solicitudes s LEFT JOIN Personas p1 ON s.nodoccliente = p1.nodoc LEFT JOIN Personas p2 ON s.nodoctecnico = p2.nodoc INNER JOIN Estados e ON s.idest = e.idest INNER JOIN Categorias c ON s.idcat = c.idcat")
   List<ReporteSolicitudDTO> getReporteSolicitud();
 
-  
+  @Query("SELECT new com.proyectosgrt.demo.DTO.SolicitudesMovilDTO (s.idsol, s.fechacre, c.nombre, s.prio, e.nombre, CONCAT(p.pnom, ' ', p.pape), s.fechaci) FROM Solicitudes s INNER JOIN Categorias c ON s.idcat = c.idcat INNER JOIN Estados e ON s.idest = e.idest LEFT JOIN Personas p ON s.nodoctecnico = p.nodoc WHERE s.nodoccliente = ?1")
+  List<SolicitudesMovilDTO> getListMySolicitudesMovil(String nodoccliente);
 }
 
 
